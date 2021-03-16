@@ -1,0 +1,11 @@
+node {
+    stage('SCM') {
+		git changelog: false, poll: false, url: 'https://github.com/98amanmaurya/pass.git'
+    }
+    stage('Database schema upgrade') {
+        echo 'Upgrading target schema'
+    }
+    stage('Execute Package') {
+		bat label: 'Executing package', script: 'dtexec /f .\\\\Integration Services Project2\\\\Integration Services Project2\\\\FirstSSISPackage.dtsx'
+    }
+ }
